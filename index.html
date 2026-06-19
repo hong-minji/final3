@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리바이스 & 게스코리아 브랜드 혁신 전략 발표자료</title>
+    <style>
+        /* ==========================================
+           1. DESIGN SYSTEM & VARIABLE DEFINITIONS
+           ========================================== */
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+        :root {
+            /* Common System Variables */
+            --font-display: 'Outfit', 'Noto Sans KR', sans-serif;
+            --font-body: 'Noto Sans KR', sans-serif;
+            --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-theme: background 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                                 border-color 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                                 box-shadow 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            
+            /* Theme Dependent Variables (Default: Levi's Cyber Indigo) */
+            --bg-primary: #080b11;
+            --bg-secondary: #0e131f;
+            --bg-gradient: linear-gradient(135deg, #05070a 0%, #0d121d 50%, #151c2d 100%);
+            --accent-color: #3b82f6; /* Cyber Blue */
+            --accent-rgb: 59, 130, 246;
+            --accent-light: #60a5fa;
+            --accent-second: #10b981; /* Cyber Mint */
+            --accent-second-rgb: 16, 185, 129;
+            --card-bg: rgba(13, 18, 30, 0.65);
+            --card-border: rgba(59, 130, 246, 0.18);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --brand-name: "LEVI'S";
+            --brand-logo-color: #3b82f6;
+        }
+
+        /* Guess Theme (Matte Charcoal & Guess Red) */
+        .theme-guess {
+            --bg-primary: #0b0b0b;
+            --bg-secondary: #121212;
+            --bg-gradient: linear-gradient(135deg, #070707 0%, #111111 50%, #1d1d1d 100%);
+            --accent-color: #e11d48; /* Guess Crimson Red */
+            --accent-rgb: 225, 29, 72;
+            --accent-light: #fb7185;
+            --accent-second: #9ca3af;
+            --accent-second-rgb: 156, 163, 175;
+            --card-bg: rgba(22, 22, 22, 0.7);
+            --card-border: rgba(225, 29, 72, 0.18);
+            --text-primary: #fafafa;
+            --text-secondary: #a3a3a3;
+            --brand-name: "GUESS";
+            --brand-logo-color: #e11d48;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            transition: var(--transition-theme);
+        }
+
+        /* ==========================================
+           2. NAVIGATION & LAYOUT CONTAINERS
+           ========================================== */
+        
+        /* Global Header (Brand Logo & Global Switcher) */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: 0.2em;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span.badge {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            background: rgba(var(--accent-rgb), 0.15);
+            color: var(--accent-light);
+            border: 1px solid rgba(var(--accent-rgb), 0.3);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.1);
+            transition: var(--transition-theme);
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        /* Toggle Button */
+        .toggle-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition-smooth);
+        }
+
+        .toggle-btn:hover {
+            background: rgba(var(--accent-rgb), 0.1);
+            border-color: rgba(var(--accent-rgb), 0.4);
+            box-shadow: 0 4px 20px rgba(var(--accent-rgb), 0.15);
+            transform: translateY(-2px);
+        }
+
+        .toggle-btn .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            box-shadow: 0 0 8px var(--accent-color);
+            transition: var(--transition-theme);
+        }
+
+        /* Keyboard Help Badge */
+        .kbd-guide {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            display: flex;
+            gap: 0.3rem;
+            align-items: center;
+        }
+
+        .kbd-key {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            padding: 0.1rem 0.3rem;
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        /* Main Slider Wrapper */
+        .slider-viewport {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slider-container {
+            display: flex;
+            width: 1600%; /* 16 slides */
+            height: 100%;
+            transition: transform 0.85s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* Single Slide Layout */
+        .slide {
+            width: 6.25%; /* 1/16 of container */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 7rem 6rem 4rem 6rem;
+            box-sizing: border-box;
+            position: relative;
+            opacity: 0.3;
+            transform: scale(0.98);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Two Column Slide Content Split */
+        .slide-content-split {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            height: 100%;
+            align-items: center;
+        }
+
+        .slide-content-full {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        /* Slide Titles */
+        .slide-header {
+            margin-bottom: 2rem;
+        }
+
+        .slide-category {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.25em;
+            color: var(--accent-light);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            animation: pulse-glow 2s infinite;
+        }
+
+        .slide-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: var(--text-primary);
+        }
+
+        /* Highlight styled text */
+        .highlight {
+            color: var(--accent-light);
+            background: linear-gradient(120deg, rgba(var(--accent-rgb), 0.15) 0%, rgba(var(--accent-rgb), 0) 100%);
+            padding: 0 0.4rem;
+            border-radius: 4px;
+        }
+
+        /* ==========================================
+           3. UI COMPONENTS & CARDS
+           ========================================== */
+        
+        /* Glassmorphism Card Style */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2.2rem;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(var(--accent-rgb), 0.4);
+            box-shadow: 0 12px 40px 0 rgba(var(--accent-rgb), 0.12);
+        }
+
+        /* Grid Layouts */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        /* Card Icon */
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(var(--accent-rgb), 0.15);
+            color: var(--accent-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(var(--accent-rgb), 0.3);
+            transition: var(--transition-theme);
+        }
+
+        .card:hover .card-icon {
+            background: rgba(var(--accent-rgb), 0.3);
+            transform: scale(1.05);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        /* Stats Component */
+        .stat-large {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--accent-light);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.03em;
+            text-shadow: 0 0 20px rgba(var(--accent-rgb), 0.25);
+            transition: var(--transition-theme);
+        }
+
+        .stat-unit {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Interactive Tabs Component */
+        .tabs-container {
+            display: grid;
+            grid-template-columns: 0.4fr 1.6fr;
+            gap: 2.5rem;
+            height: 380px;
+        }
+
+        .tabs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-align: left;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+        }
+
+        .tab-btn.active {
+            background: rgba(var(--accent-rgb), 0.15);
+            border-color: var(--accent-color);
+            color: var(--text-primary);
+            box-shadow: inset 0 0 10px rgba(var(--accent-rgb), 0.1);
+        }
+
+        .tab-content-panel {
+            position: relative;
+            height: 100%;
+        }
+
+        .tab-panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .tab-panel.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        /* Image Display & Frames */
+        .image-frame {
+            width: 100%;
+            height: 100%;
+            max-height: 480px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.85);
+            transition: var(--transition-smooth);
+        }
+
+        .image-frame:hover img {
+            transform: scale(1.05);
+            filter: brightness(0.95);
+        }
+
+        .image-overlay-card {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            background: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        /* Glass Table (Competitor Matrix) */
+        .glass-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .glass-table th, .glass-table td {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .glass-table th {
+            font-weight: 700;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .glass-table td {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+
+        .glass-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .glass-table tr.highlighted td {
+            background: rgba(var(--accent-rgb), 0.08);
+            border-color: rgba(var(--accent-rgb), 0.2);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .badge-table {
+            background: rgba(var(--accent-rgb), 0.15);
+            color: var(--accent-light);
+            border: 1px solid rgba(var(--accent-rgb), 0.3);
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        /* Timeline Component */
+        .timeline-container {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 50px;
+            left: 5%;
+            width: 90%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+
+        .timeline-progress {
+            position: absolute;
+            top: 50px;
+            left: 5%;
+            width: 0%;
+            height: 4px;
+            background: var(--accent-color);
+            z-index: 2;
+            transition: width 1s ease;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .timeline-node {
+            position: relative;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 3;
+            padding: 0 1rem;
+        }
+
+        .timeline-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0.4);
+            transition: var(--transition-smooth);
+        }
+
+        .timeline-node.active .timeline-dot {
+            background: var(--accent-color);
+            border-color: var(--text-primary);
+            box-shadow: 0 0 0 8px rgba(var(--accent-rgb), 0.2);
+            transform: scale(1.15);
+        }
+
+        .timeline-year {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-node.active .timeline-year {
+            color: var(--accent-light);
+        }
+
+        .timeline-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            max-width: 260px;
+        }
+
+        /* 5 Key Trends Carousel Slider (For Slide 10) */
+        .carousel-outer {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .carousel-inner {
+            display: flex;
+            gap: 2rem;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            width: max-content;
+        }
+
+        .carousel-card {
+            width: 290px;
+            flex-shrink: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            backdrop-filter: blur(10px);
+            transition: var(--transition-smooth);
+        }
+
+        .carousel-card.highlighted {
+            border-color: var(--accent-color);
+            box-shadow: 0 8px 30px rgba(var(--accent-rgb), 0.15);
+        }
+
+        .carousel-num {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Custom Mini SVG Chart */
+        .chart-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 280px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .chart-label-box {
+            position: absolute;
+            left: 2rem;
+            top: 2rem;
+        }
+
+        .chart-metric {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-light);
+        }
+
+        /* ==========================================
+           4. PRESENTATION PAGINATION & FOOTER CONTROLS
+           ========================================== */
+        
+        /* Bottom Controls (Progress bar & arrows) */
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .footer-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .footer-brand {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        .footer-page-num {
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .footer-page-num span.total {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        /* Slide Progress Line */
+        .slide-progress-wrapper {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 110;
+        }
+
+        .slide-progress-bar {
+            width: 6.25%; /* Start with 1/16 */
+            height: 100%;
+            background: var(--accent-color);
+            box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.5);
+            transition: width 0.7s cubic-bezier(0.25, 1, 0.5, 1), background 0.7s ease;
+        }
+
+        /* Pagination Dots */
+        .pagination-dots {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        .dot-nav {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .dot-nav.active {
+            background: var(--accent-color);
+            transform: scale(1.4);
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        /* Directional Navigation Arrows */
+        .arrow-nav-group {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .arrow-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .arrow-btn:hover {
+            background: rgba(var(--accent-rgb), 0.15);
+            border-color: rgba(var(--accent-rgb), 0.4);
+            transform: translateY(-2px);
+        }
+
+        .arrow-btn:active {
+            transform: translateY(0);
+        }
+
+        .arrow-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ==========================================
+           5. DECORATIONS & EFFECTS
+           ========================================== */
+        @keyframes pulse-glow {
+            0% { opacity: 0.7; text-shadow: 0 0 5px rgba(var(--accent-rgb), 0.2); }
+            50% { opacity: 1; text-shadow: 0 0 15px rgba(var(--accent-rgb), 0.6); }
+            100% { opacity: 0.7; text-shadow: 0 0 5px rgba(var(--accent-rgb), 0.2); }
+        }
+
+        /* SVG Line Dash Draw Animation */
+        .draw-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawLine 2s forwards ease-in-out;
+        }
+
+        @keyframes drawLine {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* Fade-in-up animations for active slide content */
+        .slide .anim-fade-up {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .slide.active .anim-fade-up {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Delays */
+        .delay-1 { transition-delay: 0.15s !important; }
+        .delay-2 { transition-delay: 0.3s !important; }
+        .delay-3 { transition-delay: 0.45s !important; }
+        .delay-4 { transition-delay: 0.6s !important; }
+    </style>
+</head>
+<body class="theme-levis">
+
+    <!-- Global Header -->
+    <header>
+        <div class="logo">
+            <span id="header-brand-name">LEVI'S</span>
+            <span class="badge" id="theme-status-badge">Innovation Strategy</span>
+        </div>
+        
+        <div class="nav-controls">
+            <!-- Brand Manual Override Switcher -->
+            <button class="toggle-btn" onclick="toggleBrandOverride()" title="클릭 시 브랜드 테마 컬러를 강제 변환합니다">
+                <span class="dot"></span>
+                <span id="theme-btn-text">Switch to Guess Theme</span>
+            </button>
+            <div class="kbd-guide">
+                <span>이동:</span>
+                <span class="kbd-key">←</span>
+                <span class="kbd-key">→</span>
+                <span>또는 마우스 휠</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Slides Viewport Container -->
+    <div class="slider-viewport">
+        <div class="slider-container" id="slideContainer">
+            
+            <!-- SLIDE 1: Title (Levi's) -->
+            <section class="slide active" id="slide-0">
+                <div class="slide-content-split">
+                    <div class="anim-fade-up">
+                        <div class="slide-category">Strategic Vision (2025-2027)</div>
+                        <h1 class="slide-title" style="font-size: 3.2rem; margin-top: 1.5rem; margin-bottom: 2.5rem; line-height: 1.25;">
+                            Heritage Meets Future<br>
+                            <span class="highlight">리바이스의 디지털 대전환</span>
+                        </h1>
+                        <p style="font-size: 1.15rem; line-height: 1.8; color: var(--text-secondary); max-width: 650px; margin-bottom: 2.5rem;">
+                            170년의 독보적인 브랜드 헤리티지를 데이터 혁신과 융합하여, 전통적인 제조/도매 중심 모델에서 탈피하여 
+                            <strong>DTC 중심의 글로벌 라이프스타일 테크 기업</strong>으로 도약하는 미래 로드맵을 제시합니다.
+                        </p>
+                        <div class="grid-2" style="max-width: 500px;">
+                            <div class="card" style="padding: 1.2rem 1.8rem;">
+                                <div class="footer-brand" style="margin-bottom: 0.2rem;">DTC Target</div>
+                                <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-light);">55% 이상</div>
+                            </div>
+                            <div class="card" style="padding: 1.2rem 1.8rem;">
+                                <div class="footer-brand" style="margin-bottom: 0.2rem;">Target EBIT</div>
+                                <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-light);">15% Margin</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-frame anim-fade-up delay-1" style="height: 90%;">
+                        <img src="images/levis_streetwear.png" alt="Levi's Streetwear">
+                        <div class="image-overlay-card">
+                            <h4 style="font-weight: 700; margin-bottom: 0.3rem;">Levi's 2026 Cyber Edition</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary);">인디고 헤리티지에 디지털 사이버 감각을 매칭한 현대적 리브랜딩 비주얼</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 2: Pain Points (Levi's) -->
+            <section class="slide" id="slide-1">
+                <div class="slide-content-full">
+                    <div class="slide-header anim-fade-up">
+                        <div class="slide-category">Context & Diagnostics</div>
+                        <h2 class="slide-title">우리가 당면한 <span class="highlight">3대 위기 요인 (Pain Points)</span></h2>
+                    </div>
+                    <div class="grid-3 anim-fade-up delay-1" style="margin-bottom: 3rem;">
+                        <div class="card">
+                            <div class="card-icon">01</div>
+                            <h3 class="card-title">유통 채널의 종속성</h3>
+                            <p class="card-desc">백화점 및 멀티숍 등 도매(Wholesale) 유통 중심 채널의 높은 의존도로 최종 소비자 데이터(First-party Data) 확보가 한계에 봉착하였으며, 중간 유통 수수료 발생으로 인해 영업 마진 한계를 겪고 있습니다.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">02</div>
+                            <h3 class="card-title">단일 카테고리 리스크</h3>
+                            <p class="card-desc">하의(데님 팬츠)에 극도로 과도하게 쏠린 매출 포트폴리오 구조는 계절별 수요 변동에 매우 취약하며, 최근 글로벌 SPA, 패스트 패션 및 애슬레저 군의 위협적인 침투에 기민하게 대응하기 어렵습니다.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">03</div>
+                            <h3 class="card-title">공급망 & 재고 부담</h3>
+                            <p class="card-desc">글로벌 지정학적 불안과 원자재(코튼) 단가 급등으로 제조 원가가 가중되고 있으며, 수요 예측 실패 시 불필요한 과잉 재고가 발생하여 결과적으로 브랜드 가치를 훼손하는 할인 프로모션의 고리로 이어집니다.</p>
+                        </div>
+                    </div>
+                    <div class="card anim-fade-up delay-2" style="background: rgba(var(--accent-rgb), 0.03); border-color: rgba(var(--accent-rgb), 0.15); padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between;">
+                        <span style="font-weight: 500; font-size: 1.05rem;">💡 <b>전략 방향성 도출:</b> 기존 도매 채널의 종속에서 벗어나, 직접 소비자와 연결하고 다각화된 라이프스타일 웨어로 확장해야 합니다.</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 3: Key Facts (Levi's) -->
+            <section class="slide" id="slide-2">
+                <div class="slide-content-full">
+                    <div class="slide-header anim-fade-up">
+                        <div class="slide-category">Key Facts & Assets</div>
+                        <h2 class="slide-title">성장을 견인할 <span class="highlight">독보적인 3대 경쟁 자산</span></h2>
+                    </div>
+                    <div class="grid-3 anim-fade-up delay-1" style="margin-bottom: 2rem;">
+                        <div class="card" style="text-align: center; padding: 3rem 2rem;">
+                            <div class="stat-large">170<span class="stat-unit">Years</span></div>
+                            <h3 class="card-title" style="margin-top: 1rem;">최상의 헤리티지</h3>
+                            <p class="card-desc" style="font-size: 0.9rem;">
+                                Levi's 501®은 단순한 데님이 아닌 하나의 역사이자 패션 표준입니다. 강력한 오리지널리티로 프리미엄 전략화의 토대가 됩니다.
+                            </p>
+                        </div>
+                        <div class="card" style="text-align: center; padding: 3rem 2rem;">
+                            <div class="stat-large">+25<span class="stat-unit">%</span></div>
+                            <h3 class="card-title" style="margin-top: 1rem;">NextGen 매장 효과</h3>
+                            <p class="card-desc" style="font-size: 0.9rem;">
+                                맞춤 수선, 디지털 연계 경험을 제공하는 리바이스 차세대 매장(NextGen) 론칭 결과, <b>평균 객단가가 25% 상승</b>하는 가치를 입증했습니다.
+                            </p>
+                        </div>
+                        <div class="card" style="text-align: center; padding: 3rem 2rem;">
+                            <div class="stat-large">45<span class="stat-unit">M</span></div>
+                            <h3 class="card-title" style="margin-top: 1rem;">글로벌 로열티 멤버십</h3>
+                            <p class="card-desc" style="font-size: 0.9rem;">
+                                전 세계 4,500만 명에 이르는 가입자의 퍼스트파티 행동 데이터를 확보하여 정밀 타겟 광고 및 수요 예측의 핵심 무기로 활용합니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 4: Core Strategies (Levi's) -->
+            <section class="slide" id="slide-3">
+                <div class="slide-content-full">
+                    <div class="slide-header anim-fade-up">
+                        <div class="slide-category">Core Strategies</div>
+                        <h2 class="slide-title">비즈니스를 혁신할 <span class="highlight">4대 핵심 전략</span></h2>
+                    </div>
+                    
+                    <div class="tabs-container anim-fade-up delay-1">
+                        <div class="tabs-list">
+                            <button class="tab-btn active" onclick="switchTab(0)">01. DTC 가속화</button>
+                            <button class="tab-btn" onclick="switchTab(1)">02. 포트폴리오 다각화</button>
+                            <button class="tab-btn" onclick="switchTab(2)">03. AI 트랜스포메이션</button>
+                            <button class="tab-btn" onclick="switchTab(3)">04. 근본적 ESG 수립</button>
+                        </div>
+                        
+                        <div class="tab-content-panel card">
+                            <!-- Tab 1 -->
+                            <div class="tab-panel active" id="panel-0">
+                                <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--accent-light); margin-bottom: 1rem;">DTC(직접 판매) 채널 가속화 및 오프라인 매장 혁신</h3>
+                                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                                    오프라인에서는 커스텀 수선 공간 'Tailor Shop'이 내장된 NextGen 차세대 매장을 글로벌 허브 거점에 적극 확대 구축합니다. 온라인에서는 자사 몰(Levis.com)과 공식 앱의 사용 경험(UI/UX)을 강화하여, 2027년까지 <b>전체 매출 중 DTC 채널 비중을 55% 이상</b>으로 늘리고 영업이익률 15%를 수성합니다.
+                                </p>
+                                <div style="display: flex; gap: 2rem;">
+                                    <div>
+                                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">DTC 비중 목표</div>
+                                        <div style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">55% (2027)</div>
+                                    </div>
+                                    <div style="border-left: 1px solid rgba(255,255,255,0.1); padding-left: 2rem;">
+                                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">영업이익률 목표</div>
+                                        <div style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">15% EBIT Margin</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tab 2 -->
+                            <div class="tab-panel" id="panel-1">
+                                <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--accent-light); margin-bottom: 1rem;">'Head-to-Toe' 라이프스타일 포트폴리오 다각화</h3>
+                                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                                    하의 중심 이미지에서 벗어나 셔츠, 트러커, 니트웨어 등 상의(Tops) 카테고리의 디자인 투자를 강화하여 상의 비중을 25% 이상으로 육성합니다. 또한 웰니스 애슬레저인 'Beyond Yoga'와 협업 시너지를 적극 도모하고 LVC(Levi's Vintage Clothing), Made & Crafted 등 프리미엄 한정 제품 마케팅으로 브랜드 감도를 격상시킵니다.
+                                </p>
+                                <div style="display: flex; gap: 2rem;">
+                                    <div>
+                                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">상의 매출 비중</div>
+                                        <div style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">25% 이상</div>
+                                    </div>
+                                    <div style="border-left: 1px solid rgba(255,255,255,0.1); padding-left: 2rem;">
+                                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">공략 포커스</div>
+                                        <div style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">여성(Wellness) & 프리미엄 LVC</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tab 3 -->
+                            <div class="tab-panel" id="panel-2">
+                                <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--accent-light); margin-bottom: 1rem;">디지털 및 AI 트랜스포메이션</h3>
+                                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                                    머신러닝 알고리즘에 따른 글로벌 통합 수요 예측 시스템을 완비하여 SKU 단위 최적 재고 공급을 달성하며, 이를 통해 재고량을 전년 동기 대비 <b>7% 감축</b>하고 품절률을 최소화합니다. 자사 채널 유저 접점에는 고성능 AI 추천 엔진 및 가상 증강 피팅(AR Try-on)을 융합해 반품률을 감소시킵니다.
+                                </p>
+                                <div style="display: flex; gap: 2rem;">
+                                    <div>
+                                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">재고 감축 목표</div>
+                                        <div style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">-7% (YoY)</div>
+                                    </div>
+                                    <div style="border-left: 1px solid rgba(255,255,255,0.1); padding-left: 2rem;">
+                                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">반품 방어 기제</div>
+                                        <div style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">AI 가상 피팅 & 개인화 추천</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tab 4 -->
+                            <div class="tab-panel" id="panel-3">
+                                <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--accent-light); margin-bottom: 1rem;">순환 패션과 근본적 지속가능성(Radical Sustainability)</h3>
+                                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                                    물 사용량을 최고 96% 줄이는 고유 친환경 가공법인 Water&lt;Less™ 기술의 전 제품 적용 비중을 80% 이상으로 끌어올립니다. 지속 가능한 코튼 소싱률 100%를 완료하고, 유저가 입던 진을 회수하여 재생하는 리바이스 세컨드핸드(SecondHand) 활성화를 통해 패밀리 단위 탄소배출 절감 및 순환 비즈니스를 주도합니다.
+                                </p>
+                                <div style="display: flex; gap: 2rem;">
+                                    <div>
+                                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">Water&lt;Less 공정 적용</div>
+                                        <div style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">전 제품의 80% 이상</div>
+                                    </div>
+                                    <div style="border-left: 1px solid rgba(255,255,255,0.1); padding-left: 2rem;">
+                                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">순환 모델</div>
+                                        <div style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">글로벌 SecondHand 프로그램</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 5: Brand Modernization (Levi's) -->
+            <section class="slide" id="slide-4">
+                <div class="slide-content-split">
+                    <div class="anim-fade-up">
+                        <div class="slide-category">Brand Modernization</div>
+                        <h2 class="slide-title" style="margin-bottom: 1.8rem;">
+                            올드한 브랜드 탈피:<br>
+                            <span class="highlight">디자인 혁신 및 핏 다각화</span>
+                        </h2>
+                        <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 2rem;">
+                            "리바이스는 올드하다"는 소비자의 고착화된 심리적 인식을 정면 돌파하기 위해, 클래식 헤리티지에 감각적 트렌드를 이식하여 한 차원 높은 세련된 감도를 구축합니다.
+                        </p>
+                        <div class="grid-2">
+                            <div class="card" style="padding: 1.5rem;">
+                                <h4 style="font-weight: 700; margin-bottom: 0.5rem; color: var(--accent-light);">01. 핏(Silhouette)의 세분화</h4>
+                                <p style="font-size: 0.85rem; line-height: 1.5; color: var(--text-secondary);">
+                                    기존 일자핏(Straight Fit)에서 완전히 탈피하여 벌룬 와이드 핏, 크롭 아웃핏, 트렌디 하이라이즈 등 젊은 세대의 체형과 유행에 유연히 적응하는 디자인 다변화
+                                </p>
+                            </div>
+                            <div class="card" style="padding: 1.5rem;">
+                                <h4 style="font-weight: 700; margin-bottom: 0.5rem; color: var(--accent-light);">02. 글로벌 스트릿 콜라보</h4>
+                                <p style="font-size: 0.85rem; line-height: 1.5; color: var(--text-secondary);">
+                                    트렌디한 하이프 스트릿 브랜드 및 세계적 아티스트와의 캡슐 컬렉션 콜라보레이션 라인업 정례 배치를 통해 희소성 마케팅 가동
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-frame anim-fade-up delay-1" style="height: 90%;">
+                        <img src="images/levis_streetwear.png" alt="Levi's Streetwear Visual">
+                        <div class="image-overlay-card">
+                            <h4 style="font-weight: 700; margin-bottom: 0.3rem;">Digital Fit Advisor</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary);">자사 몰 내 고도화된 AI 스타일 매칭 알고리즘을 통한 감각적 코디 제안</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 6: Competitor Matrix (Levi's) -->
+            <section class="slide" id="slide-5">
+                <div class="slide-content-full">
+                    <div class="slide-header anim-fade-up">
+                        <div class="slide-category">Competitive Analysis</div>
+                        <h2 class="slide-title">경쟁 우위 매트릭스 <span class="highlight">(Competitive Matrix)</span></h2>
+                    </div>
+                    
+                    <div class="card anim-fade-up delay-1" style="padding: 1rem; margin-bottom: 2rem;">
+                        <table class="glass-table">
+                            <thead>
+                                <tr>
+                                    <th>평가 요소</th>
+                                    <th>리바이스 (Levi's)</th>
+                                    <th>프리미엄 경쟁사 (A)</th>
+                                    <th>매스 SPA 브랜드 (B)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="highlighted">
+                                    <td><b>브랜드 헤리티지</b></td>
+                                    <td><span class="badge-table">최상 (170년의 역사성)</span></td>
+                                    <td>중급 수준 (유행 의존)</td>
+                                    <td>낮음 (트랜드 카피 위주)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>제품 내구성</b></td>
+                                    <td><b>최상</b> (수선/커스텀 기반 평생웨어)</td>
+                                    <td>보통</td>
+                                    <td>낮음 (한 시즌 소모형 의류)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>DTC 채널 역량</b></td>
+                                    <td><b>강력</b> (자사몰 전환 가속화)</td>
+                                    <td>보통</td>
+                                    <td>매우 강력 (자체 유통망 지배)</td>
+                                </tr>
+                                <tr class="highlighted">
+                                    <td><b>지속가능성 (ESG)</b></td>
+                                    <td><span class="badge-table">업계 선도 (Water&lt;Less)</span></td>
+                                    <td>점진적 도입 단계</td>
+                                    <td>미흡 (마케팅 용도로만 활용)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="anim-fade-up delay-2" style="font-size: 0.95rem; color: var(--text-secondary); text-align: center;">
+                        ※ 리바이스는 압도적인 역사적 헤리티지와 높은 품질 및 내구성, 그리고 주도적인 친환경 공정을 주무기로 프리미엄 D2C 가치를 지배합니다.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SLIDE 7: Roadmap (Levi's) -->
+            <section class="slide" id="slide-6">
+                <div class="slide-content-full">
+                    <div class="slide-header anim-fade-up">
+                        <div class="slide-category">Execution Roadmap</div>
+                        <h2 class="slide-title">2025 - 2027 <span class="highlight">전략 실행 로드맵</span></h2>
+                    </div>
+                    
+                    <div class="timeline-container anim-fade-up delay-1">
+                        <div class="timeline-line"></div>
+                        <div class="timeline-progress" id="roadmapProgress"></div>
+                        
+                        <div class="timeline-node active">
+                            <div class="timeline-dot" onclick="setTimelineProgress(0)"></div>
+                            <div class="timeline-year">2025</div>
+                            <h4 style="font-weight: 700; margin-bottom: 0.5rem; color: var(--accent-light);">기반 확보 & 카테고리 다각화</h4>
+                            <p class="timeline-desc">
+                                글로벌 통합 데이터 시스템 구축 완료, 상의(Tops) 및 아우터 신규 제품 대규모 론칭, 로열티 멤버십 기반 다지기.
+                            </p>
+                        </div>
+                        
+                        <div class="timeline-node">
+                            <div class="timeline-dot" onclick="setTimelineProgress(1)"></div>
+                            <div class="timeline-year">2026</div>
+                            <h4 style="font-weight: 700; margin-bottom: 0.5rem; color: var(--accent-light);">글로벌 롤아웃 & AI 완성</h4>
+                            <p class="timeline-desc">
+                                NextGen 매장 연 100개 이상 신흥 시장 롤아웃, AI 완결형 지능적 물류 및 공급망 통합, Beyond Yoga의 글로벌 인프라 확장.
+                            </p>
+                        </div>
+                        
+                        <div class="timeline-node">
+                            <div class="timeline-dot" onclick="setTimelineProgress(2)"></div>
+                            <div class="timeline-year">2027</div>
+                            <h4 style="font-weight: 700; margin-bottom: 0.5rem; color: var(--accent-light);">라이프스타일 1위 확고화</h4>
+                            <p class="timeline-desc">
+                                Head-to-Toe 컬렉션의 완전 정착, 매출 총이익률 61.7% 달성, EBIT 영업이익률 15% 고수익 구조 안착.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 8: Part 2 Cover (Guess) -->
+            <section class="slide" id="slide-7">
+                <div class="slide-content-split">
+                    <div class="anim-fade-up">
+                        <div class="slide-category">Korean Market Insights (2026-2028)</div>
+                        <h1 class="slide-title" style="font-size: 3rem; margin-top: 1.5rem; margin-bottom: 2.5rem; line-height: 1.25;">
+                            GUESS Korea:<br>
+                            <span class="highlight">디지털 채널 혁신 전략</span>
+                        </h1>
+                        <p style="font-size: 1.15rem; line-height: 1.8; color: var(--text-secondary); max-width: 650px; margin-bottom: 2rem;">
+                            한국 패션 이커머스 시장이 맞이한 장기적 저성장 국면과 플랫폼 마진 파괴에 맞서, 
+                            <b>5만 원 임계값 기반의 고수익 D2C 자사몰 중심 생태계</b>를 개척하는 게스코리아의 혁신 실천 방안을 조명합니다.
+                        </p>
+                        <div class="footer-brand" style="color: var(--accent-color);">
+                            Transforming the E-commerce Paradigm
+                        </div>
+                    </div>
+                    <div class="image-frame anim-fade-up delay-1" style="height: 90%;">
+                        <img src="images/guess_fashion.png" alt="Guess Brand Fashion Visual">
+                        <div class="image-overlay-card" style="border-color: rgba(var(--accent-rgb), 0.3);">
+                            <h4 style="font-weight: 700; margin-bottom: 0.3rem; color: var(--accent-light);">GUESS Editorial (2026)</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary);">시그니처 레드 포인트와 감각적인 매트 블랙이 결합된 프리미엄 룩북</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 9: Market Context (Guess) -->
+            <section class="slide" id="slide-8">
+                <div class="slide-content-split">
+                    <div class="anim-fade-up">
+                        <div class="slide-category">Market Context</div>
+                        <h2 class="slide-title" style="margin-bottom: 2rem;">
+                            한국 패션 시장,<br>
+                            <span class="highlight">성장 정체기와 구조적 재편</span>
+                        </h2>
+                        <p style="font-size: 1.05rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                            2025년 한국 패션 시장의 총 소매판매액은 약 86조 1,591억 원 규모에 이르렀으나, <b>성장률은 단 0.8%</b>에 그치며 성장이 고착화되었습니다.
+                        </p>
+                        <p style="font-size: 1.05rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 2rem;">
+                            불필요한 과시형 소비가 빠르게 퇴색하고 개인의 정서적 교감 및 가치관에 입각한 합리적인 불황형 소비 성향이 견고하게 자리를 잡고 있습니다.
+                        </p>
+                        <div class="card" style="padding: 1.2rem 1.8rem; display: flex; align-items: center; gap: 1.5rem;">
+                            <div class="stat-large" style="margin: 0; font-size: 2.5rem;">0.8%</div>
+                            <div style="font-size: 0.9rem; line-height: 1.4; color: var(--text-secondary);">
+                                <b>2025 국내 패션 소매 성장률</b><br>
+                                과거의 외형 확장을 버리고 내실 채널 중심의 체질 개선 강요
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SVG Chart Visual -->
+                    <div class="chart-box anim-fade-up delay-1">
+                        <div class="chart-label-box">
+                            <span style="font-size: 0.75rem; color: var(--text-secondary); letter-spacing: 0.1em; text-transform: uppercase;">Fashion Growth Trend</span>
+                            <div class="chart-metric">Growth Stagnant</div>
+                        </div>
+                        <svg width="320" height="180" viewBox="0 0 320 180" style="margin-top: 40px;">
+                            <!-- Grid Lines -->
+                            <line x1="20" y1="20" x2="300" y2="20" stroke="rgba(255,255,255,0.05)" stroke-width="1"></line>
+                            <line x1="20" y1="70" x2="300" y2="70" stroke="rgba(255,255,255,0.05)" stroke-width="1"></line>
+                            <line x1="20" y1="120" x2="300" y2="120" stroke="rgba(255,255,255,0.05)" stroke-width="1"></line>
+                            <line x1="20" y1="170" x2="300" y2="170" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"></line>
+                            
+                            <!-- Graph Path -->
+                            <path d="M 30,50 L 110,40 L 190,130 L 270,135" fill="none" stroke="rgba(var(--accent-rgb), 0.2)" stroke-width="4"></path>
+                            <path class="draw-path" d="M 30,50 L 110,40 L 190,130 L 270,135" fill="none" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round"></path>
+                            
+                            <!-- Nodes -->
+                            <circle cx="30" cy="50" r="6" fill="var(--accent-color)"></circle>
+                            <circle cx="110" cy="40" r="6" fill="var(--accent-color)"></circle>
+                            <circle cx="190" cy="130" r="6" fill="var(--accent-color)"></circle>
+                            <circle cx="270" cy="135" r="6" fill="var(--accent-color)"></circle>
+                            
+                            <!-- Labels -->
+                            <text x="30" y="160" fill="var(--text-secondary)" font-size="9" text-anchor="middle">2023 (+3.5%)</text>
+                            <text x="110" y="160" fill="var(--text-secondary)" font-size="9" text-anchor="middle">2024 (+1.1%)</text>
+                            <text x="190" y="160" fill="var(--text-secondary)" font-size="9" text-anchor="middle">2025 (-2.5%)</text>
+                            <text x="270" y="160" fill="var(--text-primary)" font-size="10" font-weight="700" text-anchor="middle">2026 (정체)</text>
+                        </svg>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 10: 5 Key Trends (Guess) -->
+            <section class="slide" id="slide-9">
+                <div class="slide-content-full">
+                    <div class="slide-header anim-fade-up">
+                        <div class="slide-category">5 Key Trends</div>
+                        <h2 class="slide-title">2026-2028 패션 이커머스 시장 <span class="highlight">5대 핵심 변화</span></h2>
+                    </div>
+                    
+                    <div class="carousel-outer anim-fade-up delay-1">
+                        <div class="carousel-inner" id="trendsCarousel">
+                            
+                            <!-- Card 1 -->
+                            <div class="carousel-card highlighted">
+                                <div class="carousel-num">01</div>
+                                <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem;">기후 위기 적응 상품</h3>
+                                <p style="font-size: 0.85rem; line-height: 1.5; color: var(--text-secondary);">
+                                    가을의 실종과 길어진 혹서기로 매년 반복되는 상품 기획 공식 붕괴. 기동성 있는 기후 변화 적응형 아웃핏이 핵심 경쟁력 확보.
+                                </p>
+                            </div>
+                            
+                            <!-- Card 2 -->
+                            <div class="carousel-card">
+                                <div class="carousel-num">02</div>
+                                <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem;">D2C 자사몰 회귀</h3>
+                                <p style="font-size: 0.85rem; line-height: 1.5; color: var(--text-secondary);">
+                                    플랫폼의 고액 수수료 피로도 확산. <b>5만 원 이상 고단가</b> 구매 시 고객은 브랜드 몰을 직접 신뢰해 결제하는 경향 심화.
+                                </p>
+                            </div>
+                            
+                            <!-- Card 3 -->
+                            <div class="carousel-card">
+                                <div class="carousel-num">03</div>
+                                <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem;">비디오 커머스 대세</h3>
+                                <p style="font-size: 0.85rem; line-height: 1.5; color: var(--text-secondary);">
+                                    키워드 검색에서 보면서 구매하는 비디오 몰로 통합. 숏폼 커머스는 2030을 넘어 <b>4050 충성 주부층</b>으로 대폭 도메인 확장.
+                                </p>
+                            </div>
+                            
+                            <!-- Card 4 -->
+                            <div class="carousel-card">
+                                <div class="carousel-num">04</div>
+                                <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem;">AI 에이전트 쇼퍼</h3>
+                                <p style="font-size: 0.85rem; line-height: 1.5; color: var(--text-secondary);">
+                                    단순 챗봇을 넘어 구매 결정과 비교를 대행하는 AI 쇼핑 대리인의 출현. AI 해석 대응형 데이터 구조화가 중요한 마케팅 전략화.
+                                </p>
+                            </div>
+                            
+                            <!-- Card 5 -->
+                            <div class="carousel-card">
+                                <div class="carousel-num">05</div>
+                                <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem;">'편집된 자아' & SNS 규제</h3>
+                                <p style="font-size: 0.85rem; line-height: 1.5; color: var(--text-secondary);">
+                                    Z세대의 가치소비 지향 캡슐 옷장 유행. 글로벌 미성년자 SNS 규제 강화에 따른 청소년 도달 효율 저하로 마케팅 전면 전환.
+                                </p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem;" class="anim-fade-up delay-2">
+                        <button class="arrow-btn" onclick="slideCarousel(-1)" style="width: 36px; height: 36px;">◀</button>
+                        <button class="arrow-btn" onclick="slideCarousel(1)" style="width: 36px; height: 36px;">▶</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 11: Channel Dynamics (Guess) -->
+            <section class="slide" id="slide-10">
+                <div class="slide-content-full">
+                    <div class="slide-header anim-fade-up">
+                        <div class="slide-category">Channel Dynamics</div>
+                        <h2 class="slide-title">플랫폼, 자사몰, 콘텐츠의 <span class="highlight">유기적 역학관계</span></h2>
+                    </div>
+                    
+                    <div class="grid-3 anim-fade-up delay-1" style="margin-bottom: 2.5rem;">
+                        <div class="card" style="border-color: rgba(255,255,255,0.06);">
+                            <div style="font-size: 0.8rem; color: var(--accent-light); font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase;">Platform (트래픽의 마중물)</div>
+                            <h3 class="card-title">대규모 유입 및 인지도 확장</h3>
+                            <ul style="color: var(--text-secondary); font-size: 0.9rem; padding-left: 1.2rem; line-height: 1.8;">
+                                <li>신규 잠재 유저층 필터링 통로</li>
+                                <li>20%~30% 높은 수수료 및 출혈 경쟁</li>
+                                <li>한정 컬래버 및 단기 이슈 대응 적합</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="card" style="border-color: var(--accent-color); background: rgba(var(--accent-rgb), 0.04);">
+                            <div style="font-size: 0.8rem; color: var(--accent-light); font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase;">D2C 자사몰 (고수익 코어 허브)</div>
+                            <h3 class="card-title">진성 고객 충성 고착화</h3>
+                            <ul style="color: var(--text-secondary); font-size: 0.9rem; padding-left: 1.2rem; line-height: 1.8;">
+                                <li><b>5만 원 이상</b> 고가 주력품 판매 중심</li>
+                                <li>독자적 First-party 행동 데이터 직접 통제</li>
+                                <li>유통 중간 마진 수수료 절감 및 이익률 수호</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="card" style="border-color: rgba(255,255,255,0.06);">
+                            <div style="font-size: 0.8rem; color: var(--accent-light); font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase;">Content (전환 촉진 매개체)</div>
+                            <h3 class="card-title">체류 연장 및 이탈 방어</h3>
+                            <ul style="color: var(--text-secondary); font-size: 0.9rem; padding-left: 1.2rem; line-height: 1.8;">
+                                <li>라이브 및 숏폼 기반 브랜드 철학 투사</li>
+                                <li>전통 광고 대비 <b>ROI 1.7배 향상</b></li>
+                                <li><b>고객 획득 비용(CAC) 38% 절감</b></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 12: Strategy 1 - Smart Logistics (Guess) -->
+            <section class="slide" id="slide-11">
+                <div class="slide-content-split">
+                    <div class="anim-fade-up">
+                        <div class="slide-category">Digital Strategy 01</div>
+                        <h2 class="slide-title" style="margin-bottom: 1.8rem;">
+                            5만 원 임계값 대응<br>
+                            <span class="highlight">D2C 스마트 물류 체인 구축</span>
+                        </h2>
+                        <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                            한섬의 최첨단 온라인 스마트 허브(Smart Hub e-Biz)의 지능적 물류 로봇 시스템 성공 사례를 게스 자사 이커머스 구조에 벤치마킹 도입합니다.
+                        </p>
+                        <ul style="color: var(--text-secondary); font-size: 0.95rem; padding-left: 1.2rem; line-height: 2; margin-bottom: 2rem;">
+                            <li><b>자동화 물류 연계</b>: 오배송율 80% 감소 및 발송 소요 시간 50% 단축 실현</li>
+                            <li><b>통합 재고 뷰</b>: 자사 온·오프라인 단독 전용 아이템(133개 라인업) 트래킹 연동</li>
+                            <li><b>고가 신뢰 구매</b>: 배송/반품 편의성을 극대화하여 5만 원 이상 고단가 거래를 자사몰 내에 락인</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="image-frame anim-fade-up delay-1" style="height: 90%;">
+                        <img src="images/ai_retail.png" alt="AI Smart Logistics Center">
+                        <div class="image-overlay-card" style="border-color: rgba(var(--accent-rgb), 0.3);">
+                            <h4 style="font-weight: 700; margin-bottom: 0.3rem; color: var(--accent-light);">Smart Logistics Network</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary);">주문 접수부터 배송까지 실시간 연동되는 D2C 물류 최적화 솔루션</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 13: Strategy 2 - ROPO (Guess) -->
+            <section class="slide" id="slide-12">
+                <div class="slide-content-full">
+                    <div class="slide-header anim-fade-up">
+                        <div class="slide-category">Digital Strategy 02</div>
+                        <h2 class="slide-title">SNS 광고 규제를 넘는 <span class="highlight">ROPO & 옴니채널 마케팅</span></h2>
+                    </div>
+                    <div class="grid-2 anim-fade-up delay-1" style="margin-bottom: 2rem;">
+                        <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <h3 class="card-title" style="color: var(--accent-light); margin-bottom: 1.2rem;">SNS 미성년자 차단 대책</h3>
+                                <p class="card-desc" style="line-height: 1.8;">
+                                    호주 16세 미만 계정 금지, 미국/EU의 알고리즘 광고 추적 제한 등 규제 본격화에 대응. 청소년 표적 마케팅 의존에서 완벽하게 탈피합니다. 부모와 자녀가 함께 입는 <b>패밀리 데님 라이프스타일</b> 통합 가치관 수립.
+                                </p>
+                            </div>
+                            <div style="background: rgba(255, 255, 255, 0.03); padding: 1rem; border-radius: 8px; font-size: 0.85rem; color: var(--text-secondary); margin-top: 1rem;">
+                                💡 <b>부모 연계 패밀리 마케팅</b>: 청소년 단독 저격 문법을 대체할 신뢰 중심 콘텐츠 기획
+                            </div>
+                        </div>
+                        
+                        <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <h3 class="card-title" style="color: var(--accent-light); margin-bottom: 1.2rem;">ROPO (Research Online, Purchase Offline)</h3>
+                                <p class="card-desc" style="line-height: 1.8;">
+                                    유저의 70%가 온라인에서 탐색 후 오프라인에서 직접 제품을 착용해보고 구매하는 특성(ROPO)을 대입합니다. guesskorea.com에서 수지/엔믹스 고감도 통합 룩북 탐색 → 앱 연계 근거리 프리미엄 매장(수원 타임빌라스, 광복 팝업 등) 가상 피팅 예약 연계.
+                                </p>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 8px; font-size: 0.85rem; color: var(--text-secondary); margin-top: 1rem;">
+                                💡 <b>옴니채널 피팅</b>: 오프라인 수령 시 자사 몰 포인트 즉시 연동 및 맞춤 피팅 제공
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 14: Strategy 3 - Live Commerce (Guess) -->
+            <section class="slide" id="slide-13">
+                <div class="slide-content-split">
+                    <div class="anim-fade-up">
+                        <div class="slide-category">Digital Strategy 03</div>
+                        <h2 class="slide-title" style="margin-bottom: 1.8rem;">
+                            본사 전문가 주도<br>
+                            <span class="highlight">내재화 비디오 커머스 구축</span>
+                        </h2>
+                        <p style="font-size: 1.05rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                            수수료가 비싼 메가 인플루언서 위주의 일회성 쇼핑을 배제하고, 진의 특성을 정밀하게 파악하고 있는 <b>내부 대표 MD 및 상품 디자이너들이 전격 출연하는 라이브 방송</b>을 정례화합니다.
+                        </p>
+                        <div class="card" style="padding: 1.2rem; margin-bottom: 1.5rem; border-color: rgba(var(--accent-rgb), 0.3);">
+                            <h4 style="font-weight: 700; margin-bottom: 0.3rem; color: var(--accent-light);">라이브 2차 숏폼 가공의 파괴력</h4>
+                            <p style="font-size: 0.85rem; line-height: 1.5; color: var(--text-secondary);">
+                                방송 원본 소스를 숏폼, MD 핏 가이드 영상, 소셜 광고 소재로 분할 배포. 타사 사례 결과 영상 전환만으로 <b>자사몰 구매전환율(CVR) 2.8배 성장</b> 입증.
+                             </p>
+                        </div>
+                    </div>
+                    
+                    <div class="card anim-fade-up delay-1" style="display: flex; flex-direction: column; justify-content: center; padding: 2rem;">
+                        <h3 style="font-weight: 800; font-size: 1.3rem; margin-bottom: 1.5rem; text-align: center; color: var(--text-primary);">비디오 커머스 운영 4단계 체크리스트</h3>
+                        <div style="display: grid; grid-template-rows: repeat(4, 1fr); gap: 0.8rem;">
+                            <div style="background: rgba(255,255,255,0.03); padding: 0.8rem 1.2rem; border-radius: 8px; border-left: 4px solid var(--accent-color); font-size: 0.9rem;">
+                                <b>1. 자사몰 독점 상품</b>: 133개 이상 고단가 온라인 단독 데님 매칭
+                            </div>
+                            <div style="background: rgba(255,255,255,0.03); padding: 0.8rem 1.2rem; border-radius: 8px; border-left: 4px solid var(--accent-color); font-size: 0.9rem;">
+                                <b>2. 유연한 실시간 프로모션</b>: 자사몰 전용 단기 즉시 장바구니 쿠폰 적용
+                            </div>
+                            <div style="background: rgba(255,255,255,0.03); padding: 0.8rem 1.2rem; border-radius: 8px; border-left: 4px solid var(--accent-color); font-size: 0.9rem;">
+                                <b>3. 정기 라이브 운영 루틴</b>: 매월 정례 본사 전문가 생방송 최소 1회 완수
+                            </div>
+                            <div style="background: rgba(255,255,255,0.03); padding: 0.8rem 1.2rem; border-radius: 8px; border-left: 4px solid var(--accent-color); font-size: 0.9rem;">
+                                <b>4. 다차원 숏폼 크롭 유통</b>: 숍라이브(ShopLive) 기반 상세 페이지 핏 가이드 이식
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 15: Strategy 4 - Social Listening (Guess) -->
+            <section class="slide" id="slide-14">
+                <div class="slide-content-split">
+                    <div class="anim-fade-up">
+                        <div class="slide-category">Digital Strategy 04</div>
+                        <h2 class="slide-title" style="margin-bottom: 2rem;">
+                            텍스트 너머를 보는 AI<br>
+                            <span class="highlight">멀티모달 소셜 리스닝 R&D</span>
+                        </h2>
+                        <p style="font-size: 1.05rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                            소셜 미디어(틱톡, 인스타릴스) 상에 해시태그나 브랜드 캡션 언급 없이 비주얼만 업로드되는 게스 로고 및 착용 영상(UGC) 데이터를 컴퓨터 비전 AI로 실시간 추출 측정합니다.
+                        </p>
+                        <p style="font-size: 1.05rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 2.2rem;">
+                            측정된 <b>초과 음성 점유율(ESOV)</b>이 경쟁 브랜드 대비 10%p 초과 지탱 시, 브랜드의 실질적 이커머스 M/S 점유율이 0.5%씩 증가하는 강력한 상관관계를 보입니다.
+                        </p>
+                        <div class="grid-2">
+                            <div class="card" style="padding: 1.2rem;">
+                                <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--accent-light); margin-bottom: 0.4rem;">가시성 회복</h4>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary);">텍스트 분석 시 누락되는 80~85%의 순수 비주얼 고객 데이터 정밀 필터링</p>
+                            </div>
+                            <div class="card" style="padding: 1.2rem;">
+                                <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--accent-light); margin-bottom: 0.4rem;">기후 대응 환류</h4>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary);">체형/소재 불편 정성 피드백을 ERP와 MD팀에 전달해 여름 특화 에어 데님 개발 연동</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-box anim-fade-up delay-1">
+                        <div class="chart-label-box">
+                            <span style="font-size: 0.75rem; color: var(--text-secondary); letter-spacing: 0.1em;">UGC Mention Capture Rate</span>
+                            <div class="chart-metric" style="color: var(--accent-light);">Capture: +85%</div>
+                        </div>
+                        
+                        <!-- Mini Interactive visual graphic representation of visual scanning -->
+                        <div style="width: 250px; height: 150px; background: rgba(0, 0, 0, 0.4); border: 2px dashed rgba(var(--accent-rgb), 0.5); border-radius: 12px; position: relative; overflow: hidden; margin-top: 30px; display: flex; align-items: center; justify-content: center;">
+                            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--accent-color); box-shadow: 0 0 12px var(--accent-color); animation: scanningEffect 2.5s infinite linear;"></div>
+                            
+                            <!-- Guess Virtual Logo Icon -->
+                            <div style="width: 60px; height: 60px; border: 2px solid var(--text-primary); transform: rotate(45deg); display: flex; align-items: center; justify-content: center; position: relative; transition: var(--transition-theme);">
+                                <span style="transform: rotate(-45deg); font-family: var(--font-display); font-weight: 900; font-size: 0.8rem; letter-spacing: 0.05em; color: var(--accent-color);">GUESS</span>
+                            </div>
+                            
+                            <!-- AI scanning overlay tags -->
+                            <div style="position: absolute; bottom: 0.8rem; left: 0.8rem; font-size: 0.65rem; font-family: monospace; background: rgba(var(--accent-rgb), 0.15); border: 1px solid var(--accent-color); padding: 0.2rem 0.4rem; border-radius: 4px;">
+                                CLASS: DENIM_JACKET
+                            </div>
+                            <div style="position: absolute; top: 0.8rem; right: 0.8rem; font-size: 0.65rem; font-family: monospace; background: rgba(var(--accent-rgb), 0.15); border: 1px solid var(--accent-color); padding: 0.2rem 0.4rem; border-radius: 4px;">
+                                LOGO_DETECTED: 98%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 16: Summary & Conclusion -->
+            <section class="slide" id="slide-15">
+                <div class="slide-content-full">
+                    <div class="slide-header anim-fade-up">
+                        <div class="slide-category">Summary & Conclusion</div>
+                        <h2 class="slide-title">양 브랜드 디지털 혁신 전략 요약 <span class="highlight">(Conclusion)</span></h2>
+                    </div>
+                    
+                    <div class="grid-2 anim-fade-up delay-1" style="margin-bottom: 2.5rem;">
+                        <div class="card" style="border-left: 6px solid #3b82f6;">
+                            <h3 class="card-title" style="color: #3b82f6; display: flex; align-items: center; gap: 0.5rem;">
+                                <span>👖 LEVI'S: Premium Lifestyle Tech</span>
+                            </h3>
+                            <ul style="color: var(--text-secondary); font-size: 0.95rem; padding-left: 1.2rem; line-height: 2;">
+                                <li>DTC 채널 매출 비중을 2027년까지 <b>55% 초과 달성</b> 목표</li>
+                                <li>상의(Tops) 카테고리 기획 확대로 'Head-to-Toe' 구축</li>
+                                <li>트렌디한 핏 개발 및 스트릿 브랜드 컬래버로 <b>올드 이미지 혁파</b></li>
+                                <li>AI 수요 예측 시스템 가동을 통한 재고 자산 -7% 최적화</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="card" style="border-left: 6px solid #e11d48;">
+                            <h3 class="card-title" style="color: #e11d48; display: flex; align-items: center; gap: 0.5rem;">
+                                <span>🔺 GUESS: Next-Gen Digital Commerce</span>
+                            </h3>
+                            <ul style="color: var(--text-secondary); font-size: 0.95rem; padding-left: 1.2rem; line-height: 2;">
+                                <li><b>5만 원 임계값</b> 고객 심리를 타겟한 고마진 D2C 자사몰 역량 집중</li>
+                                <li>스마트 온라인 허브 연동 배송/반품 편의성 극대화 (한섬 벤치마킹)</li>
+                                <li>미성년자 SNS 차단 극복용 <b>ROPO 및 패밀리 라이프스타일</b> 통합</li>
+                                <li>본사 MD 주도 숍라이브 내재화 및 숏폼 재가공 퍼널 (CVR 2.8배)</li>
+                                <li>AI 멀티모달 소셜 비주얼 리스닝을 통한 트렌드 신속 환류 R&D</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Bottom Controls & Pagination -->
+    <footer>
+        <div class="footer-info">
+            <span class="footer-brand" id="footer-brand-label">LEVI'S / GUESS INNOVATION</span>
+            <span class="footer-page-num"><span id="pageNum">1</span> <span class="total">/ 16</span></span>
+        </div>
+        
+        <!-- Pagination Center Dots -->
+        <div class="pagination-dots" id="paginationDots">
+            <!-- Programmatically generated dots -->
+        </div>
+
+        <div class="arrow-nav-group">
+            <button class="arrow-btn" onclick="prevSlide()" title="이전 슬라이드 (좌방향 화살표)">
+                <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"></path></svg>
+            </button>
+            <button class="arrow-btn" onclick="nextSlide()" title="다음 슬라이드 (우방향 화살표)">
+                <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"></path></svg>
+            </button>
+        </div>
+    </footer>
+
+    <!-- Slide progress line at the very bottom -->
+    <div class="slide-progress-wrapper">
+        <div class="slide-progress-bar" id="slideProgressBar"></div>
+    </div>
+
+    <!-- Dynamic Scanning Effects Styles -->
+    <style>
+        @keyframes scanningEffect {
+            0% { top: 0%; opacity: 1; }
+            50% { top: 100%; opacity: 0.8; }
+            100% { top: 0%; opacity: 1; }
+        }
+    </style>
+
+    <!-- ==========================================
+       6. INTERACTIVITY & PRESENTATION LOGIC (JS)
+       ========================================== -->
+    <script>
+        // Slides Configuration
+        const totalSlides = 16;
+        let currentSlide = 0;
+        let manualOverride = false; // Flag to trace manual theme swaps
+
+        const slideContainer = document.getElementById('slideContainer');
+        const pageNumDisplay = document.getElementById('pageNum');
+        const slideProgressBar = document.getElementById('slideProgressBar');
+        const paginationDotsContainer = document.getElementById('paginationDots');
+        const headerBrandName = document.getElementById('header-brand-name');
+        const footerBrandLabel = document.getElementById('footer-brand-label');
+        const themeBtnText = document.getElementById('theme-btn-text');
+        const themeBadge = document.getElementById('theme-status-badge');
+
+        // Setup dots in footer
+        function setupDots() {
+            paginationDotsContainer.innerHTML = '';
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = `dot-nav ${i === 0 ? 'active' : ''}`;
+                dot.onclick = () => goToSlide(i);
+                paginationDotsContainer.appendChild(dot);
+            }
+        }
+
+        // Navigate to slide index
+        function goToSlide(index) {
+            if (index < 0 || index >= totalSlides) return;
+            
+            // Remove active class from old slide
+            document.querySelector('.slide.active').classList.remove('active');
+            
+            currentSlide = index;
+            
+            // Move container
+            slideContainer.style.transform = `translateX(-${currentSlide * 6.25}%)`;
+            
+            // Add active class to new slide
+            const activeSlide = document.getElementById(`slide-${currentSlide}`);
+            activeSlide.classList.add('active');
+            
+            // Update UI state
+            pageNumDisplay.innerText = currentSlide + 1;
+            slideProgressBar.style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
+            
+            // Update dots
+            document.querySelectorAll('.dot-nav').forEach((dot, idx) => {
+                if (idx === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+
+            // Auto switch themes unless user manually overridden it
+            if (!manualOverride) {
+                applyAutoTheme(currentSlide);
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                goToSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                goToSlide(currentSlide - 1);
+            }
+        }
+
+        // Automatic Theme Switching depending on slide range
+        function applyAutoTheme(slideIndex) {
+            const body = document.body;
+            if (slideIndex < 7) {
+                // Levi's section
+                body.className = 'theme-levis';
+                headerBrandName.innerText = "LEVI'S";
+                footerBrandLabel.innerText = "LEVI'S STRATEGIC INITIATIVES (2025-2027)";
+                themeBtnText.innerText = "Switch to Guess Theme";
+                themeBadge.innerText = "Innovation Strategy";
+                themeBadge.style.color = "var(--accent-light)";
+            } else {
+                // Guess section
+                body.className = 'theme-guess';
+                headerBrandName.innerText = "GUESS";
+                footerBrandLabel.innerText = "GUESS KOREA DIGITAL TRANSFORMATION (2026-2028)";
+                themeBtnText.innerText = "Switch to Levi's Theme";
+                themeBadge.innerText = "Digital Transformation";
+                themeBadge.style.color = "var(--accent-light)";
+            }
+        }
+
+        // Manual Theme override button action
+        function toggleBrandOverride() {
+            const body = document.body;
+            manualOverride = true; // Block auto switching till next presentation refresh
+
+            if (body.classList.contains('theme-levis')) {
+                body.className = 'theme-guess';
+                headerBrandName.innerText = "GUESS";
+                themeBtnText.innerText = "Switch to Levi's Theme";
+                themeBadge.innerText = "Digital Transformation (Manual Mode)";
+            } else {
+                body.className = 'theme-levis';
+                headerBrandName.innerText = "LEVI'S";
+                themeBtnText.innerText = "Switch to Guess Theme";
+                themeBadge.innerText = "Innovation Strategy (Manual Mode)";
+            }
+        }
+
+        // Interactive Tab Switching logic (Slide 4)
+        function switchTab(tabIndex) {
+            // Remove active classes
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+            
+            // Add active classes
+            document.querySelectorAll('.tab-btn')[tabIndex].classList.add('active');
+            document.getElementById(`panel-${tabIndex}`).classList.add('active');
+        }
+
+        // Interactive Timeline Progress logic (Slide 7)
+        function setTimelineProgress(step) {
+            const progress = document.getElementById('roadmapProgress');
+            const nodes = document.querySelectorAll('.timeline-node');
+            
+            // Set line width
+            const width = step === 0 ? 0 : step === 1 ? 50 : 100;
+            progress.style.width = `${width}%`;
+            
+            // Update node active states
+            nodes.forEach((node, idx) => {
+                if (idx <= step) {
+                    node.classList.add('active');
+                } else {
+                    node.classList.remove('active');
+                }
+            });
+        }
+
+        // 5 Key Trends Carousel Slider (Slide 10)
+        let carouselPos = 0;
+        const totalCarouselCards = 5;
+        const cardWidth = 322; // width 290px + gap 32px
+
+        function slideCarousel(direction) {
+            const carousel = document.getElementById('trendsCarousel');
+            const cards = document.querySelectorAll('.carousel-card');
+            
+            carouselPos += direction;
+            // Bound carousel scroll limit
+            if (carouselPos < 0) carouselPos = 0;
+            if (carouselPos > totalCarouselCards - 3) carouselPos = totalCarouselCards - 3; // Show 3 cards at once
+
+            // Apply translation offset
+            carousel.style.transform = `translateX(-${carouselPos * cardWidth}px)`;
+            
+            // Highlight centered/active card
+            cards.forEach((card, idx) => {
+                if (idx === carouselPos + 1) {
+                    card.classList.add('highlighted');
+                } else {
+                    card.classList.remove('highlighted');
+                }
+            });
+        }
+
+        // Keyboard Controls Handler
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // Mouse Wheel Scroll Handler (Throttled for stability)
+        let lastScrollTime = 0;
+        document.addEventListener('wheel', (e) => {
+            const currentTime = new Date().getTime();
+            if (currentTime - lastScrollTime < 1000) return; // Throttle 1 second scroll interval
+            
+            if (e.deltaY > 30) {
+                nextSlide();
+                lastScrollTime = currentTime;
+            } else if (e.deltaY < -30) {
+                prevSlide();
+                lastScrollTime = currentTime;
+            }
+        });
+
+        // Initialize presentation
+        setupDots();
+        applyAutoTheme(0);
+    </script>
+</body>
+</html>
